@@ -17,7 +17,11 @@ case class Family(father: Person, mother: Person, children: Seq[Person]) {
    * @param child the child to be born.
    * @return a new Family.
    */
+<<<<<<< HEAD
   def birth(child: Person): Family = Family(this.father, this.mother, children:+child) // TODO (10) implement
+=======
+  def birth(child: Person): Family = ??? // TODO (10) implement
+>>>>>>> upstream/Fall2022
 }
 
 /**
@@ -36,9 +40,12 @@ case class Person(name: String, gender: Gender, age: Option[Int]) {
    */
   def marry(person: Person): Try[Family] = gender.join(person.gender) match {
     // TODO (15) add cases for (1) male/female, (2) female/male and (3) same-sex, which should fail with GenderException("Illegal")
+<<<<<<< HEAD
     case Some(MaleFemale) => Try{Family (Person(name, gender, age),person, List())}
     case Some(FemaleMale) => Try{Family (person, Person(name, gender, age), List())}
     case Some(Illegal) => Failure(GenderException("Illegal"))
+=======
+>>>>>>> upstream/Fall2022
     case _ => Failure(new NoSuchElementException)
   }
 }
@@ -59,6 +66,7 @@ case class Gender(maybeMale: Option[Boolean]) {
   // TODO (20) Construct a for comprehension based on maybeMale and other.maybeMale and then, inside the yielded expression,
   // match on the two resulting Booleans, as described in the scaladoc above.
   // In the default case, return Illegal.
+<<<<<<< HEAD
   List(other.toString, this.toString)
   match {
     case List("M","F") => Some(FemaleMale)
@@ -68,6 +76,9 @@ case class Gender(maybeMale: Option[Boolean]) {
     case _ => None
 
   }
+=======
+  ???
+>>>>>>> upstream/Fall2022
 
   override def toString: String = maybeMale match {
     case Some(true) => "M"
@@ -108,4 +119,9 @@ object HappyFamilies extends App {
   val age = maybeAge(scanner.next())
   System.err.print(s"Hello, $name, I believe you are $gender and $age years old")
   val person1 = Person(name, gender, age)
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> upstream/Fall2022

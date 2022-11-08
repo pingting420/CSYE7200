@@ -50,4 +50,8 @@ class HappyFamiliesSpec extends AnyFlatSpec with should.Matchers {
     f1 shouldBe Success(Family(bentley, gingerSnap, Seq(xena)))
   }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/Fall2022
