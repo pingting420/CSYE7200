@@ -139,14 +139,14 @@ object WebCrawler extends App {
     def wget(url: URL)(implicit ec: ExecutionContext): Future[Seq[URL]] = {
         // Hint: write as a for-comprehension, using the method createURL(Option[URL], String) to get the appropriate URL for relative links
         // 16 points.
-        def getURLs(ns: Node): Seq[Try[URL]] = for {s <- ns \\ "a" map(_ \ "@href")} yield createURL(Some(u), s.toString)
+        def getURLs(ns: Node): Seq[Try[URL]] = for {s <- ns \\ "a" map(_ \ "@href")} yield validateURL(createURL(Some(url), s.text))// TO BE IMPLEMENTED
 
         def getLinks(g: String): Try[Seq[URL]] = {
             val ny: Try[Node] = HTMLParser.parse(g) recoverWith { case f => Failure(new RuntimeException(s"parse problem with URL $url: $f")) }
             for (n <- ny; uys = getURLs(n); us <- MonadOps.sequenceForgiveSubsequent(uys) { case _: WebCrawlerProtocolException => true; case _ => false }) yield us
         }
         for{
-          l <- getURLContent(u)
+          l <- getURLContent(url)
           w <- MonadOps.asFuture(getLinks(l))
        } yield w // TO BE IMPLEMENTED
     }
