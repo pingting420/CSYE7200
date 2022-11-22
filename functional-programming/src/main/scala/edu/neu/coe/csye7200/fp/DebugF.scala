@@ -36,7 +36,12 @@ object DebugF {
          * @return x.
          */
         def !![X](x: X): X = { /* SOLUTION */
-            ???
+            val prefix: String = "DebugF"
+            val colon: String = ":"
+            return prefix+colon+w+colon+x.toString
+
+
+
             /* END */
         }
 
